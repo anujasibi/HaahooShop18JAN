@@ -33,9 +33,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
+<!--        <activity-->
+<!--            android:name=".MapsActivity"-->
+<!--            android:label="@string/title_activity_maps" />-->
         <activity android:name=".WelcomeActivity" />
         <activity android:name=".Pdf" />
         <activity android:name=".Confirmresetpin" />
@@ -111,14 +111,12 @@
         <activity android:name=".ViewBranches" />
         <activity android:name=".AddEmployee" />
         <activity android:name=".AddShopBranch" />
-        <!--
   <meta-data
             android:name="com.razorpay.ApiKey"
             android:value="rzp_live_MquWTYi6ypIVBE" />
-        -->
-        <meta-data
+        <!--<meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_test_Sc2QOgXEJcedKm" />
+            android:value="rzp_test_Sc2QOgXEJcedKm" />-->
 
         <activity android:name=".addproductnew" />
         <activity android:name=".Payment" />

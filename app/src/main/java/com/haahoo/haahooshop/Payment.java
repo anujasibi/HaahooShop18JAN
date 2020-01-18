@@ -49,19 +49,23 @@ public class Payment extends Activity implements PaymentResultListener {
     Context context=this;
     Activity activity = this;
     List<SlideModel> array=new ArrayList<>();
+    Button cod;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-
         setContentView(R.layout.activity_payment);
         sessionManager=new SessionManager(this);
-
         Window window = activity.getWindow();
         //offer();
+        cod = findViewById(R.id.cod);
+        cod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,CODOTP.class);
+                startActivity(intent);
+            }
+        });
 
        // imageSlider=findViewById(R.id.img);
        /* ArrayList<SlideModel>imagelist=new ArrayList<>();
@@ -95,7 +99,7 @@ public class Payment extends Activity implements PaymentResultListener {
             @Override
             public void onClick(View view) {
                // Toast.makeText(context,"You skipped payment",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Payment.this,choose.class));
+                startActivity(new Intent(Payment.this,MainActivity.class));
 
             }
         });
@@ -233,7 +237,7 @@ public class Payment extends Activity implements PaymentResultListener {
                           //  Log.d("otp","mm"+ot);
                             if(code.equals("200")) {
                                 Toast.makeText(Payment.this, ot, Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(Payment.this,choose.class));
+                                startActivity(new Intent(Payment.this,MainActivity.class));
                             }
                             else{
                                 Toast.makeText(Payment.this, ot, Toast.LENGTH_LONG).show();

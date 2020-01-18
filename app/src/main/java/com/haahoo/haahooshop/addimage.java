@@ -16,6 +16,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
@@ -98,7 +99,41 @@ public class addimage extends AppCompatActivity {
         window.setStatusBarColor(activity.getResources().getColor(R.color.black));
         dialog=new ProgressDialog(addimage.this,R.style.MyAlertDialogStyle);
         requestMultiplePermissions();
+        Dexter.withActivity(this)
+                .withPermissions(
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        // check if all permissions are granted
+                        if (report.areAllPermissionsGranted()) {
+                            // Toast.makeText(getApplicationContext(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
+                        }
 
+                        // check for permanent denial of any permission
+                        if (report.isAnyPermissionPermanentlyDenied()) {
+                            // show alert dialog navigating to Settings
+                            //openSettingsDialog();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+
+
+                }).
+                withErrorListener(new PermissionRequestErrorListener() {
+                    @Override
+                    public void onError(DexterError error) {
+                        Toast.makeText(getApplicationContext(), "Some Error! ", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .onSameThread()
+                .check();
         sessionManager=new SessionManager(this);
 
         listOfImagesPath.clear();
@@ -132,9 +167,11 @@ public class addimage extends AppCompatActivity {
         File imageDirectory = new File(GridViewDemo_ImagePath);
         imageDirectory.mkdirs();
         if (imageDirectory.isDirectory()){
-            String[] children = imageDirectory.list();
-            for (int i =0;i<children.length;i++){
-                new File(imageDirectory,children[i]).delete();
+            if (imageDirectory.list().length>0) {
+                String[] children = imageDirectory.list();
+                for (int i = 0; i < children.length; i++) {
+                    new File(imageDirectory, children[i]).delete();
+                }
             }
         }
 
@@ -306,9 +343,14 @@ public class addimage extends AppCompatActivity {
 
         }
     }
+
+
     private String getRealPathFromURIPath(Uri contentURI, Activity activity) {
-        Cursor cursor = activity.getContentResolver().query(contentURI, null, null, null, null);
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor cursor = activity.getContentResolver().query(contentURI, proj, null, null, null);
+
         if (cursor == null) {
+            cursor.moveToFirst();
             return contentURI.getPath();
         } else {
             cursor.moveToFirst();

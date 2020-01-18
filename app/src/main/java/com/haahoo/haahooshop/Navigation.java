@@ -436,7 +436,9 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
                         startActivity(new Intent(Navigation.this,Earnings.class));
                         break;
                     case R.id.nav_settings:
-                        startActivity(new Intent(Navigation.this,Uporder.class));
+                        Intent intent=new Intent(context,Uporder.class);
+                        intent.putExtra("fromactivity","navigation");
+                        startActivity(intent);
                         break;
 
                     case R.id.subsc:

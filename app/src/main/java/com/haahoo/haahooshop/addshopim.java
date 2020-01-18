@@ -388,7 +388,8 @@ public class addshopim extends AppCompatActivity {
     }
 
     private String getRealPathFromURIPath(Uri contentURI, Activity activity) {
-        Cursor cursor = activity.getContentResolver().query(contentURI, null, null, null, null);
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor cursor = activity.getContentResolver().query(contentURI, proj, null, null, null);
         if (cursor == null) {
             return contentURI.getPath();
         } else {
@@ -507,7 +508,7 @@ public class addshopim extends AppCompatActivity {
                             Log.d("code","mm"+status);
                             if(status.equals("200")){
                                 Toast.makeText(addshopim.this, "Successful", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(addshopim.this, MainActivity.class);
+                                Intent intent = new Intent(addshopim.this, Payment.class);
                                 startActivity(intent);
                             }
                             else{

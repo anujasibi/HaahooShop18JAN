@@ -125,7 +125,7 @@ public class ConfirmPin extends AppCompatActivity {
                     Log.d("code","mm"+status);
                     if(status.equals("200")){
                         Toast.makeText(ConfirmPin.this, "Successful", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(ConfirmPin.this, Payment.class);
+                        Intent intent = new Intent(ConfirmPin.this, choose.class);
                         startActivity(intent);
                     }
                     else{

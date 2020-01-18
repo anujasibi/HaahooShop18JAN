@@ -336,7 +336,8 @@ public class profile extends AppCompatActivity {
                 .check();
     }
     private String getRealPathFromURIPath(Uri contentURI, Activity activity) {
-        Cursor cursor = activity.getContentResolver().query(contentURI, null, null, null, null);
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor cursor = activity.getContentResolver().query(contentURI, proj, null, null, null);
         if (cursor == null) {
             return contentURI.getPath();
         } else {

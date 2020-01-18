@@ -57,7 +57,7 @@ public class Earnings extends AppCompatActivity {
     private ProgressDialog dialog ;
     private Calendar myCalendar;
     ImageView imageView;
-    TextView tex,texx;
+    TextView tex,texx,text;
     EditText input;
     private String URLline = Global.BASE_URL+"shop_bank_details/shop_bank_withdrawal/";
 
@@ -71,6 +71,7 @@ public class Earnings extends AppCompatActivity {
 
         tex=findViewById(R.id.tex);
         texx=findViewById(R.id.texx);
+        text=findViewById(R.id.text);
 
         texx.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -285,6 +286,10 @@ public class Earnings extends AppCompatActivity {
 
                             if(dataArray.length() == 0){
                                 Toast.makeText(Earnings.this,"Nothing to display",Toast.LENGTH_SHORT).show();
+                                tex.setVisibility(View.GONE);
+                                texx.setVisibility(View.GONE);
+                                text.setVisibility(View.GONE);
+
                             }
 
                             for (int i = 0; i < dataArray.length(); i++) {

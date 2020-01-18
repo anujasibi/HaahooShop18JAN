@@ -42,7 +42,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class registernew extends AppCompatActivity {
-    EditText shopname,owner,gstno,phone,email,password,distance;
+    EditText shopname,owner,gstno,phone,email,password,distance,empID;
     EditText address;
     TextView submit,show,hide;
     String device_id = null;
@@ -78,7 +78,7 @@ public class registernew extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registernew);
         image = findViewById(R.id.image);
-
+        empID = findViewById(R.id.empID);
         Picasso.get().load(Global.BASE_URL+"media/files/events_add/extra_pic/haahoo_logo1.png").into(image);
 
         Window window = activity.getWindow();
@@ -186,9 +186,6 @@ public class registernew extends AppCompatActivity {
                             sessionManager.setpayid(id);
                             sessionManager.setTokens(token);
 
-
-
-
                             Log.d("otp","mm"+token);
                             Log.d("code","mm"+status);
                             if(status.equals("200")){
@@ -231,6 +228,13 @@ public class registernew extends AppCompatActivity {
                 Log.d("pass","mm"+password.getText().toString());
                 params.put("phone_no",phone.getText().toString());
                 Log.d("phone","mm"+phone.getText().toString());
+                if (empID.getText().toString().length()>0){
+                    params.put("ref_id",empID.getText().toString());
+                }
+                if (empID.getText().toString().length() == 0){
+                    params.put("ref_id","0");
+                }
+
                 return params;
             }
 

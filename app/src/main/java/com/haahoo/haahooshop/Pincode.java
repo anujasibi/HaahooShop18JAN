@@ -148,24 +148,24 @@ public class Pincode extends AppCompatActivity {
                     Log.d("otp","mm"+token);
                     Log.d("code","mm"+status);
                     if(status.equals("200")){
-                        Toast.makeText(Pincode.this, "Successful", Toast.LENGTH_LONG).show();
+                       // Toast.makeText(Pincode.this, "Successful", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(Pincode.this, Navigation.class);
                         startActivity(intent);
                     }
-                    if(role_type.equals("")||payment_status.equals("Payment not done")&&status.equals("200")){
-                        Toast.makeText(Pincode.this, "Login Failed.Please do payment", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(Pincode.this, paymentnew.class);
-                        startActivity(intent);
-
-                    }
-                    if(role_type.equals("")&&payment_status.equals("Payment done")){
-
-                        Toast.makeText(Pincode.this, "Login Failed.Please choose your role for further process", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(Pincode.this, choose.class);
-                        startActivity(intent);
-                    }
-                    else{
-                        Toast.makeText(Pincode.this, "Failed."+ot, Toast.LENGTH_LONG).show();
+//                    if(role_type.equals("")||payment_status.equals("Payment not done")&&status.equals("200")){
+//                        Toast.makeText(Pincode.this, "Login Failed.Please do payment", Toast.LENGTH_LONG).show();
+//                        Intent intent = new Intent(Pincode.this, paymentnew.class);
+//                        startActivity(intent);
+//
+//                    }
+//                    if(role_type.equals("")&&payment_status.equals("Payment done")){
+//
+//                        Toast.makeText(Pincode.this, "Login Failed.Please choose your role for further process", Toast.LENGTH_LONG).show();
+//                        Intent intent = new Intent(Pincode.this, choose.class);
+//                        startActivity(intent);
+//                    }
+                    if (status.equals("203")){
+                        Toast.makeText(Pincode.this, "Failed", Toast.LENGTH_LONG).show();
 
 
                     }
@@ -183,7 +183,7 @@ public class Pincode extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
-                        Toast.makeText(Pincode.this,error.toString(),Toast.LENGTH_LONG).show();
+                       // Toast.makeText(Pincode.this,error.toString(),Toast.LENGTH_LONG).show();
                     }
                 }){
             @Override

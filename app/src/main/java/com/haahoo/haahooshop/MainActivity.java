@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                             if(payment_status.equals("Payment not done")&&status.equals("200")){
                                 Toast.makeText(MainActivity.this, "Please do payment", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(MainActivity.this, paymentnew.class);
+                                Intent intent = new Intent(MainActivity.this, Payment.class);
                                 startActivity(intent);
 
                             }
